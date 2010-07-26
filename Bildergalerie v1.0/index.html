@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="Styles.css">
+
+  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+   <script type="text/javascript">
+     google.load("jquery", "1.4.2");
+     google.setOnLoadCallback(function() {
+     });
+   </script>
+
+   <script type="text/javascript" charset="utf-8">
+       $(document).ready(function() {
+$("#stern1").addClass("active_star");
+	$("#gallery li").hide('fast');
+	$("#gallery li").first().fadeIn('fast').addClass("active");
+	$("#prev").click(function() {
+	var $current = $("#gallery li.active");
+	console.log($current.prev().length);
+	
+	
+	if($current.prev().length == 0){
+	console.log("ende");
+			$("#gallery li").last()
+			.addClass("active")
+			.fadeIn();
+			$current.fadeOut().removeClass("active");	
+			$("#stern3").addClass("active_star");
+			$("#stern1").removeClass("active_star");
+	}
+
+	else{
+	$("#gallery li.active").prev()
+			.addClass("active")
+			.fadeIn();
+			console.log("naechster");
+		$current.fadeOut().removeClass("active");
+		if($current.next().length==0){
+		$("#stern2").addClass("active_star");
+			$("#stern3").removeClass("active_star");
+		}	
+		else{$("#stern1").addClass("active_star");
+		$("#stern2").removeClass("active_star");
+		}
+	}	
+	});
+	
+
+	
+	$("#next").click(function() {
+	
+	
+
+	var $current = $("#gallery li.active");
+
+	// letzter
+		if($current.next().length == 0){
+			
+			$("#gallery li").first()
+			.addClass("active")
+			.fadeIn();
+			$current.fadeOut().removeClass("active");	
+			$("#stern1").addClass("active_star");
+			$("#stern3").removeClass("active_star");		
+}
+	//naechster
+	else{
+		$("#gallery li.active").next()
+			.addClass("active")
+			.fadeIn();
+			console.log("naechster");
+		
+		$current.fadeOut().removeClass("active");
+		if($current.prev().length==0){
+		$("#stern2").addClass("active_star");
+			$("#stern1").removeClass("active_star");
+		}	
+		else{$("#stern3").addClass("active_star");
+		$("#stern2").removeClass("active_star");
+		}	
+	}	
+});
+	$("#stern1").click(function(){
+	var $current = $("#gallery li.active");
+	$("#gallery li").removeClass("active");
+	$("#gallery li").first().fadeIn('fast').addClass("active");
+	$current.fadeOut().removeClass("active");	
+		$("#stern2").removeClass("active_star");
+		$("#stern3").removeClass("active_star");	
+		$("#stern1").addClass("active_star");	;
+});
+	
+$("#stern2").click(function(){
+	var $current = $("#gallery li.active");
+	$("#gallery li").removeClass("active");
+	$("#gallery li").first().next().fadeIn('fast').addClass("active");
+	$current.fadeOut().removeClass("active");	
+	$("#stern1").removeClass("active_star");
+	$("#stern3").removeClass("active_star");	
+	$("#stern2").addClass("active_star");	
+});
+$("#stern3").click(function(){
+	var $current = $("#gallery li.active");
+	$("#gallery li").removeClass("active");
+	$("#gallery li").last().fadeIn('fast').addClass("active");
+	$current.fadeOut().removeClass("active");
+	$("#stern1").removeClass("active_star");
+	$("#stern2").removeClass("active_star");	
+	$("#stern3").addClass("active_star");	
+	
+});
+	})
+</script>
+    </head>
+    <body>
+	<div id="container">
+		<div id="oben">
+		<div id="stern1" align="center"><p>*</p></div>
+		<div id="stern2" align="center"><p>*</p></div>
+		<div id="stern3" align="center"><p>*</p></div>
+		</div>    
+		<div id="prev">Zurück</div>
+	    <ul id="gallery">
+	    	<li class="active"><img src="Starwars.jpg"/></li>
+	    	<li ><img src="sc2.jpg"/></li>
+	    	<li ><img src="Starwars2.jpg"/></li>
+	    </ul>
+            <div id="next">Vor</div>
+	    <div class="clear-fix"></div>
+    </div>
+    </body>
+</html>
