@@ -1,4 +1,29 @@
 <?php
+/**********************
+ * 
+ * Errors / Dev
+ * 
+ **********************/
+//
+//Force enviroment to Dev ** REMOVE FOR LIVE SITES **
+Director::set_environment_type("dev");
+//
+//Force cache to flush on page load if in Dev mode (prevents needing ?flush=1 on the end of a URL)
+if (Director::isDev()) {
+	ini_set('display_errors', 1);
+	error_reporting(E_ALL);
+	SSViewer::flush_template_cache();
+	Debug::log_errors_to('err.log');
+}
+//(v2.4) Log errors to an email address
+//SS_Log::add_writer(new SS_LogEmailWriter('me@mydomain.com'), SS_Log::ERR); 
+//
+//(v2.4) Log errors to a file
+//SS_Log::add_writer(new SS_LogFileWriter('error_log.txt'), SS_Log::ERR); 
+//
+
+
+
 
 /**
  * Extended URL rules for the CMS module

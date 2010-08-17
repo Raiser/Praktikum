@@ -1,0 +1,1 @@
+den bildern eine id zuweisen bzw jedes bild soll eindeutig gemacht werden damit man weiß welches das erste bild ist 
